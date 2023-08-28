@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest countries task</title>
+</head>
+<body>
+    <h1>
+        Guvi Day 6 task
+    </h1>
+    <script>
+        let http = new XMLHttpRequest();
+
+        http.open("GET", "https://restcountries.com/v3.1/all");
+        http.send();
+
+        http.onload = () => {
+            if(http.status === 200){
+                const restcountries = JSON.parse(http.response);
+
+                //Task a --> Countries in Asia region
+                const countriesInAsia = restcountries.filter((country) => {
+                    if(country.region == 'Asia'){
+                        return true
+                    }
+                })
+                console.log("TASK A");
+                console.log("Countries in Asia: ", countriesInAsia);
+
+                //Task b --> Countries with a population of less than 2 lakhs
+                const countriesWithLessPopulation = restcountries.filter((country) => {
+                    if(country.population < 200000){
+                        return true
+                    }
+                })
+                console.log("TASK B");
+                console.log("Countries with population less than 2 Lakhs: ", countriesWithLessPopulation);
+
+                //Task c --> Printing the details name, capital, flag
+                console.log("TASK C");
+                const countryDetails = restcountries.forEach(country => {
+                    console.log("Name: ", country.name.common);
+                    console.log("Capital: ", country.capital);
+                    console.log("Flag: ", country.flag);
+                }); 
+
+                //Task d --> Total population of countries
+                const totalPopulation = restcountries.reduce((acc, val) => {
+                    return acc + val.population;
+                }, 0)
+                console.log("TASK D");
+                console.log("Total Population: ", totalPopulation);
+
+                //Task E --> Countries uses US Dollar
+                const countriesUsesUSDollar = restcountries.filter((country) => {
+                    if(country.currencies == 'USD'){
+                        return true;
+                    }
+                })
+                console.log("TASK E");
+                console.log("Country uses US Dollar: ", countriesUsesUSDollar);
+            }else{
+                console.log("ERROR");
+            }
+        };
+
+    </script>
+</body>
+</html>
