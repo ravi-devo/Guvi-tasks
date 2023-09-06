@@ -1,0 +1,27 @@
+body{
+    height: 100%;
+    width: 100vh;
+}
+
+.container{
+    height: 200px;
+    width: 600px;
+    background-color: darkcyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-item{
+    border-radius: 10px;
+    background-color: rgb(142, 80, 80);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+p{
+    align-self: center;
+    color: white;
+}
